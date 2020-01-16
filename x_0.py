@@ -1,9 +1,9 @@
 # --------- Global Variables -----------
 
 # Will hold our game board data
-board = ["-", "-", "-",
-         "-", "-", "-",
-         "-", "-", "-"]
+board = ["*", "*", "*",
+         "*", "*", "*",
+         "*", "*", "*"]
 
 # Lets us know if the game is over yet
 game_still_going = True
@@ -46,11 +46,9 @@ def play_game():
 def display_board():
     print("\n")
     print(board[0] + " | " + board[1] + " | " + board[2] + "     1 | 2 | 3")
-
-
-t print(board[3] + " | " + board[4] + " | " + board[5] + "     4 | 5 | 6")
-print(board[6] + " | " + board[7] + " | " + board[8] + "     7 | 8 | 9")
-print("\n")
+    print(board[3] + " | " + board[4] + " | " + board[5] + "     4 | 5 | 6")
+    print(board[6] + " | " + board[7] + " | " + board[8] + "     7 | 8 | 9")
+    print("\n")
 
 
 # Handle a turn for an arbitrary player
@@ -72,7 +70,7 @@ def handle_turn(player):
         position = int(position) - 1
 
         # Then also make sure the spot is available on the board
-        if board[position] == "-":
+        if board[position] == "*":
             valid = True
         else:
             print(
@@ -115,9 +113,9 @@ def check_rows():
     # Set global variables
     global game_still_going
     # Check if any of the rows have all the same value (and is not empty)
-    row_1 = board[0] == board[1] == board[2] != "-"
-    row_2 = board[3] == board[4] == board[5] != "-"
-    row_3 = board[6] == board[7] == board[8] != "-"
+    row_1 = board[0] == board[1] == board[2] != "*"
+    row_2 = board[3] == board[4] == board[5] != "*"
+    row_3 = board[6] == board[7] == board[8] != "*"
     # If any row does have a match, flag that there is a win
     if row_1 or row_2 or row_3:
         game_still_going = False
@@ -138,9 +136,9 @@ def check_columns():
     # Set global variables
     global game_still_going
     # Check if any of the columns have all the same value (and is not empty)
-    column_1 = board[0] == board[3] == board[6] != "-"
-    column_2 = board[1] == board[4] == board[7] != "-"
-    column_3 = board[2] == board[5] == board[8] != "-"
+    column_1 = board[0] == board[3] == board[6] != "*"
+    column_2 = board[1] == board[4] == board[7] != "*"
+    column_3 = board[2] == board[5] == board[8] != "*"
     # If any row does have a match, flag that there is a win
     if column_1 or column_2 or column_3:
         game_still_going = False
@@ -161,8 +159,8 @@ def check_diagonals():
     # Set global variables
     global game_still_going
     # Check if any of the columns have all the same value (and is not empty)
-    diagonal_1 = board[0] == board[4] == board[8] != "-"
-    diagonal_2 = board[2] == board[4] == board[6] != "-"
+    diagonal_1 = board[0] == board[4] == board[8] != "*"
+    diagonal_2 = board[2] == board[4] == board[6] != "*"
     # If any row does have a match, flag that there is a win
     if diagonal_1 or diagonal_2:
         game_still_going = False
@@ -181,7 +179,7 @@ def check_for_tie():
     # Set global variables
     global game_still_going
     # If board is full
-    if "-" not in board:
+    if "*" not in board:
         game_still_going = False
         return True
     # Else there is no tie
